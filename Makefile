@@ -29,7 +29,7 @@ install:
 	$(INSTALL) lib/px/utils/*.lua $(DESTDIR)/$(LUA_LIB_DIR)/px/utils
 
 docker-test: docker
-	docker run -it -w /tmp -v logs:/var/log/nginx perimeterx/pxnginx:latest prove -v t
+	docker run -it -w /tmp -v logs:/var/log/nginx -e TEST_COVERAGE=1 perimeterx/pxnginx:latest prove -v t && luacov
 
 docker-sh: docker
 	docker run -it -w /tmp -v logs:/var/log/nginx perimeterx/pxnginx:latest sh

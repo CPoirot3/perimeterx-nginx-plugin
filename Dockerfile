@@ -23,10 +23,15 @@ RUN apt-get update && apt-get --force-yes -qq -y install \
     rsyslog \
     wget \
     zlib1g-dev \
-    luarocks
+    lua5.1 \
+    liblua5.1-dev \
+    unzip
 # ***** DOWNLOAD AND UNTAR *****
+
+RUN curl -sSL https://luarocks.github.io/luarocks/releases/luarocks-2.2.0.tar.gz | tar xzf - && cd luarocks-2.2.0 && ./configure && make build && sudo make install
 RUN luarocks install lustache
 RUN luarocks install luasocket
+RUN luarocks install luacov
 RUN curl -sSL http://nginx.org/download/nginx-${VER_NGINX}.tar.gz | tar xzf -
 RUN curl -sSL http://luajit.org/download/LuaJIT-${VER_LUAJIT}.tar.gz | tar xzf -
 RUN curl -sSL https://github.com/simpl/ngx_devel_kit/archive/v${VER_NGINX_DEVEL_KIT}.tar.gz | tar xzf -
