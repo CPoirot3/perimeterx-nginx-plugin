@@ -43,6 +43,7 @@ RUN curl -sSL https://github.com/bungle/lua-resty-nettle/archive/v0.95.tar.gz | 
 RUN curl -sSL http://cpanmin.us | perl - App::cpanminus
 RUN cpanm --quiet --notest --skip-satisfied Test::Nginx
 RUN cpanm --quiet --notest --skip-satisfied CryptX
+RUN cpanm --quiet --notest --skip-satisfied Devel::Cover
 # ***** BUILD FROM SOURCE *****
 # LuaJIT
 WORKDIR /LuaJIT-${VER_LUAJIT}
