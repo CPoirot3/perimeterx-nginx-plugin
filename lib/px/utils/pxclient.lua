@@ -243,6 +243,25 @@ function M.load(px_config)
         return true
     end
 
+    function _M.reverse_pxsw(lower_request_url)
+        if not string.find(lower_request_url, string.lower("/" .. 'pxsw.js')) then
+            return false
+        end
+
+        -- Prepare default response
+        local default_content_type = 'application/javascript'
+        local default_content = ''
+
+        local px_request_uri = "/" .. px_config.px_appId .. "/main.min.js"
+        px_logger.debug("Forwarding request from "  .. ngx.var.uri .. " to client at " .. px_config.client_host  .. px_request_uri)
+        ngx_req_set_uri(px_request_uri)
+        px_common_utils.clear_first_party_sensitive_headers(px_config.sensitive_headers)
+
+        forward_to_perimeterx(px_config.client_host, px_config.client_port_overide, true)
+
+        return true;
+    end
+
     function _M.reverse_px_client(reverse_prefix, lower_request_url)
         if not string.find(lower_request_url, string.lower("/" .. reverse_prefix .. px_constants.FIRST_PARTY_VENDOR_PATH)) then
             return false

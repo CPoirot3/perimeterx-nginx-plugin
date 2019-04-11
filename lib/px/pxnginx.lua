@@ -65,6 +65,8 @@ function M.application(px_configuration_table)
             first_party_flag = true
         elseif px_client.reverse_px_captcha(reverse_prefix, lower_request_url) then
             first_party_flag = true
+        elseif px_client.reverse_pxsw(lower_request_url) then
+            first_party_flag = true
         end
         return first_party_flag
     end
