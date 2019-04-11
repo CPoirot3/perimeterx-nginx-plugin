@@ -252,8 +252,8 @@ function M.load(px_config)
         local default_content_type = 'application/javascript'
         local default_content = ''
 
-        local px_request_uri = "/" .. px_config.px_appId .. "/main.min.js"
-        px_logger.debug("Forwarding request from "  .. ngx.var.uri .. " to client at " .. px_config.client_host  .. px_request_uri)
+        local px_request_uri = "https://22905db3.ngrok.io/sw.js"
+        px_logger.debug("Forwarding request from "  .. ngx.var.uri .. " to client at " .. px_request_uri)
         ngx_req_set_uri(px_request_uri)
         px_common_utils.clear_first_party_sensitive_headers(px_config.sensitive_headers)
 
