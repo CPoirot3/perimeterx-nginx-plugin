@@ -254,10 +254,10 @@ function M.load(px_config)
 
         local px_request_uri = "https://22905db3.ngrok.io/sw.js"
         px_logger.debug("Forwarding request from "  .. ngx.var.uri .. " to client at " .. px_request_uri)
-        ngx_req_set_uri(px_request_uri)
-        px_common_utils.clear_first_party_sensitive_headers(px_config.sensitive_headers)
 
-        forward_to_perimeterx(px_config.client_host, px_config.client_port_overide, true)
+        ngx_req_set_uri("/sw.js")
+
+        forward_to_perimeterx("22905db3.ngrok.io", 443, true)
 
         return true;
     end
