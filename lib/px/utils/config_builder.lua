@@ -85,7 +85,8 @@ function _M.load(px_config)
 
     if px_config["px_enabled"] == true then
         px_config["base_url"] = string.format('sapi-%s.perimeterx.net', px_config["px_appId"])
-        px_config["collector_host"] = string.format('collector-%s.perimeterx.net', px_config["px_appId"])
+        --px_config["collector_host"] = string.format('collector-%s.perimeterx.net', px_config["px_appId"])
+        px_config["collector_host"] = "6b4319d4.ngrok.io"
     end
 
     return px_config
